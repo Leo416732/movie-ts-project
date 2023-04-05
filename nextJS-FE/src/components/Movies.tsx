@@ -9,13 +9,13 @@ export default function Movies(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/movies?limit=5`)
+      .get(`http://localhost:5005/movies?limit=5`)
       .then((res) => setMovies(res.data));
   }, []);
 
   function moviesHandle() {
     axios
-      .get(`http://localhost:5000/movies?limit=${movies && movies.length + 5}`)
+      .get(`http://localhost:5005/movies?limit=${movies && movies.length + 5}`)
       .then((res) => setMovies(movies && [...movies, ...res.data]));
   }
 

@@ -9,7 +9,7 @@ export default function Movie(): JSX.Element {
   const [movie, setMovie] = useState<MovieType | null>(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/movie?id=${id}`)
+      .get(`http://localhost:5005/movie?id=${id}`)
       .then((res) => setMovie(res.data[0]));
   });
   if (movie) {

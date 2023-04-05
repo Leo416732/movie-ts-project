@@ -31,5 +31,5 @@ const movieSchema = new mongoose_1.Schema({
 }, {
     collection: "movies",
 });
-const Movie = mongoose_1.default.model("Movies", movieSchema, "movies");
-exports.default = Movie;
+const MovieModel = mongoose_1.default.model("Movies", movieSchema, "movies");
+exports.default = MovieModel;

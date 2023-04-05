@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const MovieModel_1 = __importDefault(require("../model/MovieModel"));
 const express_1 = __importDefault(require("express"));
 require("../config/mongoose-config");
+const MovieModel_1 = __importDefault(require("../model/MovieModel"));
 const movie_router = express_1.default.Router();
 movie_router.get("/movies", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let limit = Number(req.query.limit);
-        const result = yield MovieModel_1.default.find({})
+        const result = yield MovieModel_1.default.find({ poster: { $exists: true } })
             .select({ poster: 1, _id: 1, title: 1 })
             .skip(limit - 5)
             .sort({ year: -1 })
@@ -35,6 +35,7 @@ movie_router.get("/movie", (req, res) => __awaiter(void 0, void 0, void 0, funct
     const id = req.query.id;
     try {
         const result = yield MovieModel_1.default.find({ _id: id });
+        // console.log(result?.title);
         res.status(200).send(result);
     }
     catch (err) {
