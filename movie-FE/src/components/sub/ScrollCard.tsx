@@ -4,14 +4,14 @@ import Link from "next/link";
 export default function ScrollCard(prop: MovieType): JSX.Element {
   return (
     <Link
-      className="min-w-[170px] max-h-[240px] flex justify-center items-center"
+      className="min-w-[250px] max-h-[300px] flex justify-center items-center"
       href={`../movie/${prop._id}`}
     >
       <div className="w-full h-full ">
         <picture className=" h-[91%] block">
           <img
             src={prop.poster}
-            className="w-full h-[200px] object-cover"
+            className="w-full h-[300px] object-cover"
             alt=""
           />
         </picture>

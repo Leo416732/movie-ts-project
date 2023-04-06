@@ -5,14 +5,16 @@ export default function Header(): JSX.Element {
   const router = useRouter();
   function searchHandle(e: any) {
     e.preventDefault();
-    router.push(`../search/${e.target.search.value}`);
+    if (e.target.search.value) {
+      router.push(`../search/${e.target.search.value}`);
+    }
   }
   return (
     <div className="w-full bg-red-600">
-      <div className="container mx-auto h-full p-4 flex justify-between items-center flex-wrap lg:flex-nowrap">
+      <div className="container mx-auto h-full p-4 flex justify-between items-center flex-wrap ">
         <Link href="/">
           <div>
-            <picture className="block h-[40px] ">
+            <picture className="block h-[40px] col-2/12">
               <img
                 src="https://images.fandango.com/cms/assets/bf631b80-bf47-11ed-a868-adceb8892ad3--rt25-logo-mainnav-322x100.png"
                 alt=""
@@ -21,11 +23,11 @@ export default function Header(): JSX.Element {
             </picture>
           </div>
         </Link>
-        <form className="relative w-5/12" onSubmit={(e) => searchHandle(e)}>
+        <form className="relative" onSubmit={(e) => searchHandle(e)}>
           <input
             type="text"
             name="search"
-            className="w-full bg-red-800 text-white placeholder:text-white border-2 rounded-full px-5 py-2 ps-[40px]"
+            className="bg-red-800 text-white placeholder:text-white border-2 rounded-full px-5 py-2 ps-[40px] w-[400px]"
             placeholder="Search movies, TV, actors, more..."
           />
           <svg

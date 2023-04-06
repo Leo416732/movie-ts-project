@@ -3,7 +3,7 @@ import Dropdown from "@/components/sub/Dropdown";
 export default function News(): JSX.Element {
   return (
     <>
-      <div className="flex my-7 container mx-auto">
+      <div className="md:flex my-7 container mx-auto">
         <h1 className="text-3xl ">BEST IN NEWS</h1>
         <Dropdown current="NEWS" />
       </div>

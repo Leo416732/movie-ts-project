@@ -13,7 +13,7 @@ export default function Movie(props: {
 
   return (
     <>
-      <div className="flex my-7 container mx-auto">
+      <div className="md:flex my-7 container mx-auto">
         <h1 className="text-3xl">BEST IN THEATERS</h1>
         <Dropdown current={"IN THEATERS"} />
       </div>

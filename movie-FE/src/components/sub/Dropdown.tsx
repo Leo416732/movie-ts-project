@@ -10,7 +10,7 @@ export default function Dropdown(props: { current: string }): JSX.Element {
   return (
     <div>
       <button
-        className="border border-grey-500 p-2 ms-7 px-3 rounded flex justify-around  hover:border-black"
+        className="border border-grey-500 p-2 ms-7 px-3 rounded flex justify-around  hover:border-black sm:hidden md:flex "
         onClick={() => setDropdown(!dropdown)}
       >
         {current}
@@ -23,11 +23,10 @@ export default function Dropdown(props: { current: string }): JSX.Element {
       <div className="relative">
         {dropdown && (
           <div
-            className="shadow-2xl shadow-black absolute bg-white w-[500px] top-3 left-7 rounded-md h-[300px] p-5"
+            className="shadow-2xl shadow-black absolute bg-white w-[500px] top-3 left-7 rounded-md h-[300px] p-5 sm:hidden md:hidden lg:inline "
             aria-disabled
           >
             <h2 className="text-2xl text-center mb-2">{current}</h2>
-
             <div
               onClick={() => router.push("../movies")}
               className={
@@ -60,6 +59,38 @@ export default function Dropdown(props: { current: string }): JSX.Element {
             </div>
           </div>
         )}
+      </div>
+      <div className="md:hidden sm:flex mt-6">
+        <Link
+          className={
+            current == "IN THEATERS"
+              ? "w-[150px] border-b-4 border-black text-center"
+              : "text-center w-[150px]"
+          }
+          href="../movies"
+        >
+          IN THEATERS
+        </Link>
+        <Link
+          className={
+            current == "TV SHOWS"
+              ? "w-[150px] border-b-4 border-black text-center"
+              : "text-center w-[150px]"
+          }
+          href="../tv"
+        >
+          TV SHOWS
+        </Link>
+        <Link
+          className={
+            current == "NEWS"
+              ? "w-[150px] border-b-4 border-black text-center"
+              : "text-center w-[150px]"
+          }
+          href="../news"
+        >
+          NEWS
+        </Link>
       </div>
     </div>
   );
