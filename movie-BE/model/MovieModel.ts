@@ -1,10 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
 type Movietype = {
-  _id: null;
   plot: string;
   genres: any;
-  title: string;
+  title: { type: string; unique: true };
 };
 
 const movieSchema = new Schema<Movietype>(

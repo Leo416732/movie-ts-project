@@ -7,11 +7,13 @@ export default function Movie(): JSX.Element {
   const router = useRouter();
   const { id } = router.query;
   const [movie, setMovie] = useState<MovieType | null>(null);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5005/movie?id=${id}`)
       .then((res) => setMovie(res.data[0]));
   }, [id]);
+
   if (movie) {
     return (
       <>
@@ -27,33 +29,33 @@ export default function Movie(): JSX.Element {
             {" "}
             <h1 className="text-3xl ms-5 font-bold">{movie.title}</h1>
             <p className="ms-5 mt-5 text-slate-500">{movie.fullplot}</p>
-            <h5 className="ms-5 mt-5 text-slate-300">Movie info</h5>
+            <h5 className="ms-5 mt-5 text-slate-800">Movie info</h5>
             <div>
-              <p className="ms-5 mt-5 text-slate-400">
+              <p className="ms-5 mt-5 text-slate-600">
                 Genre: {movie.genres.join(",  ")}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Rating: {movie.tomatoes.viewer.rating}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Language: {movie.languages?.join(",  ")}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Directors: {movie.directors?.join(",  ")}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Writers: {movie.writers?.join(",  ")}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Release Date: {movie.year}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Run Time: {movie.runtime}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Cast: {movie.cast.join(",  ")}
               </p>
-              <p className="text-slate-400 ms-5 mt-2">
+              <p className="text-slate-600 ms-5 mt-2">
                 Wins: {movie.awards.wins}
               </p>
             </div>

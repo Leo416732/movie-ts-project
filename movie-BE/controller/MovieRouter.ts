@@ -3,8 +3,10 @@ import "../config/mongoose-config";
 import {
   getMovie,
   getMovies,
+  getMovieSearch,
   getMoviesNew,
   getMoviesRating,
+  getTvShow,
 } from "../service/MovieService";
 
 const movie_router = express.Router();
@@ -15,6 +17,20 @@ movie_router.get(
     try {
       let limit: number = Number(req.query.limit);
       const result: any = await getMovies(limit);
+      res.status(200).send(result);
+      return;
+    } catch (err) {
+      console.log("err");
+    }
+  }
+);
+
+movie_router.get(
+  "/movies/tv",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      let limit: number = Number(req.query.limit);
+      const result: any = await getTvShow(limit);
       res.status(200).send(result);
       return;
     } catch (err) {
@@ -59,6 +75,20 @@ movie_router.get(
       const result = await getMovie(id);
       // console.log(result?.title);
 
+      res.status(200).send(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+movie_router.get(
+  "/movie/search",
+  async (req: Request, res: Response): Promise<void> => {
+    const name: string | any = req.query.name;
+
+    try {
+      const result = await getMovieSearch(name);
       res.status(200).send(result);
     } catch (err) {
       console.log(err);
