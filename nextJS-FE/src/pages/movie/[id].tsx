@@ -11,18 +11,19 @@ export default function Movie(): JSX.Element {
     axios
       .get(`http://localhost:5005/movie?id=${id}`)
       .then((res) => setMovie(res.data[0]));
-  });
+  }, [id]);
   if (movie) {
     return (
       <>
-        <a className="ms-12 p-3" href={`/`}>
-          back
-        </a>
-        <div className="flex m-5 p-5 gap-9 w-full">
-          <picture className="ms-5 w-[30%]">
-            <img className="w-full h-[550px]" src={movie.poster} alt="" />
+        <div className="flex m-5 p-5 gap-9 w-full flex-wrap">
+          <picture className="ms-12 min-w-[300px] max-w-[400px] w-[30%]">
+            <img
+              className="w-full max-h-[550px] min-h-[300px]"
+              src={movie.poster}
+              alt=""
+            />
           </picture>
-          <div className="ms-5 w-[50%]">
+          <div className="ms-5 w-[50%] min-w-[500px]">
             {" "}
             <h1 className="text-3xl ms-5 font-bold">{movie.title}</h1>
             <p className="ms-5 mt-5 text-slate-500">{movie.fullplot}</p>
@@ -32,7 +33,7 @@ export default function Movie(): JSX.Element {
                 Genre: {movie.genres.join(",  ")}
               </p>
               <p className="text-slate-400 ms-5 mt-2">
-                Rating: {movie.imdb.rating}
+                Rating: {movie.tomatoes.viewer.rating}
               </p>
               <p className="text-slate-400 ms-5 mt-2">
                 Language: {movie.languages?.join(",  ")}

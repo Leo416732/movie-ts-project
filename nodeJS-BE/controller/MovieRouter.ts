@@ -1,6 +1,11 @@
 import express, { Request, Response } from "express";
 import "../config/mongoose-config";
-import { getMovie, getMovies } from "../service/MovieService";
+import {
+  getMovie,
+  getMovies,
+  getMoviesNew,
+  getMoviesRating,
+} from "../service/MovieService";
 
 const movie_router = express.Router();
 
@@ -10,6 +15,34 @@ movie_router.get(
     try {
       let limit: number = Number(req.query.limit);
       const result: any = await getMovies(limit);
+      res.status(200).send(result);
+      return;
+    } catch (err) {
+      console.log("err");
+    }
+  }
+);
+
+movie_router.get(
+  "/movies/newest",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      let limit: number = Number(req.query.limit);
+      const result: any = await getMoviesNew(limit);
+      res.status(200).send(result);
+      return;
+    } catch (err) {
+      console.log("err");
+    }
+  }
+);
+
+movie_router.get(
+  "/movies/rating",
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      let limit: number = Number(req.query.limit);
+      const result: any = await getMoviesRating(limit);
       res.status(200).send(result);
       return;
     } catch (err) {

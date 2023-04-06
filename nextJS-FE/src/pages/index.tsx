@@ -1,10 +1,39 @@
-import Layout from "@/components/Layout";
 import Movies from "@/components/Movies";
+import { MovieType } from "@/util/MovieType";
+import axios from "axios";
 
-export default function Home(): JSX.Element {
+export default function Home(props: {
+  movies: MovieType[];
+  newestmovies: MovieType[];
+  ratemovies: MovieType[];
+}): JSX.Element {
+  const { movies, newestmovies, ratemovies } = props;
+
   return (
-    <Layout>
-      <Movies />
-    </Layout>
+    <Movies
+      getmovies={movies}
+      newestmovies={newestmovies}
+      ratemovies={ratemovies}
+    />
   );
+}
+
+export async function getStaticProps() {
+  const res = await axios.get("http://localhost:5005/movies?limit=10");
+  const movies = res.data;
+  const resNew = await axios.get(
+    "http://localhost:5005/movies/newest?limit=10"
+  );
+  const newestmovies = resNew.data;
+  const resRate = await axios.get(
+    "http://localhost:5005/movies/rating?limit=10"
+  );
+  const ratemovies = resRate.data;
+  return {
+    props: {
+      movies: movies,
+      newestmovies: newestmovies,
+      ratemovies: ratemovies,
+    },
+  };
 }

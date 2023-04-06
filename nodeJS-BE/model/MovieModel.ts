@@ -1,6 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 
-const movieSchema = new Schema(
+type Movietype = {
+  _id: null;
+  plot: string;
+  genres: any;
+  title: string;
+};
+
+const movieSchema = new Schema<Movietype>(
   {
     plot: String,
     genres: Array,

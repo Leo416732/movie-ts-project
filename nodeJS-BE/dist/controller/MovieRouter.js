@@ -14,16 +14,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("../config/mongoose-config");
-const MovieModel_1 = __importDefault(require("../model/MovieModel"));
+const MovieService_1 = require("../service/MovieService");
 const movie_router = express_1.default.Router();
 movie_router.get("/movies", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let limit = Number(req.query.limit);
-        const result = yield MovieModel_1.default.find({ poster: { $exists: true } })
-            .select({ poster: 1, _id: 1, title: 1 })
-            .skip(limit - 5)
-            .sort({ year: -1 })
-            .limit(5);
+        const result = yield (0, MovieService_1.getMovies)(limit);
+        res.status(200).send(result);
+        return;
+    }
+    catch (err) {
+        console.log("err");
+    }
+}));
+movie_router.get("/movies/newest", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let limit = Number(req.query.limit);
+        const result = yield (0, MovieService_1.getMoviesNew)(limit);
+        res.status(200).send(result);
+        return;
+    }
+    catch (err) {
+        console.log("err");
+    }
+}));
+movie_router.get("/movies/rating", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let limit = Number(req.query.limit);
+        const result = yield (0, MovieService_1.getMoviesRating)(limit);
         res.status(200).send(result);
         return;
     }
@@ -34,7 +52,7 @@ movie_router.get("/movies", (req, res) => __awaiter(void 0, void 0, void 0, func
 movie_router.get("/movie", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.query.id;
     try {
-        const result = yield MovieModel_1.default.find({ _id: id });
+        const result = yield (0, MovieService_1.getMovie)(id);
         // console.log(result?.title);
         res.status(200).send(result);
     }
