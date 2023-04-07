@@ -4,9 +4,9 @@ import {
   getMovie,
   getMovies,
   getMovieSearch,
+  getMoviesIds,
   getMoviesNew,
   getMoviesRating,
-  getTvShow,
 } from "../service/MovieService";
 
 const movie_router = express.Router();
@@ -26,11 +26,10 @@ movie_router.get(
 );
 
 movie_router.get(
-  "/movies/tv",
+  "/movies-ids",
   async (req: Request, res: Response): Promise<void> => {
     try {
-      let limit: number = Number(req.query.limit);
-      const result: any = await getTvShow(limit);
+      const result: any = await getMoviesIds();
       res.status(200).send(result);
       return;
     } catch (err) {
@@ -71,9 +70,11 @@ movie_router.get(
   "/movie",
   async (req: Request, res: Response): Promise<void> => {
     const id: string | any = req.query.id;
+    console.log(id);
+
     try {
       const result = await getMovie(id);
-      // console.log(result?.title);
+      console.log(result);
 
       res.status(200).send(result);
     } catch (err) {

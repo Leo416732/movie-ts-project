@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 type Movietype = {
   plot: string;
   genres: any;
-  title: { type: string; unique: true };
+  title: { type: string };
 };
 
 const movieSchema = new Schema<Movietype>(

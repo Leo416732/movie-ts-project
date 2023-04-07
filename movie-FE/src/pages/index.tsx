@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 
 export default function Home(props: {
-  movies: MovieType;
+  movies: MovieType[];
   shows: MovieType[];
 }): JSX.Element {
   const { movies } = props;

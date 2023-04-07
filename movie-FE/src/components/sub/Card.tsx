@@ -4,7 +4,7 @@ import Empty from "./Empty";
 
 export default function Card(props: {
   movie: MovieType;
-  index: any;
+  index: number;
 }): JSX.Element {
   const { movie } = props;
   const { index } = props;

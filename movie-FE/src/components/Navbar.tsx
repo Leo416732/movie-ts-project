@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FormEvent } from "react";
 
 export default function Header(): JSX.Element {
   const router = useRouter();
-  function searchHandle(e: any) {
+  function searchHandle(e: FormEvent): void {
     e.preventDefault();
-    if (e.target.search.value) {
-      router.push(`../search/${e.target.search.value}`);
+
+    if ((e.target as HTMLButtonElement).value) {
+      router.push(`../search/${(e.target as HTMLButtonElement).value}`);
     }
   }
   return (
@@ -23,7 +25,10 @@ export default function Header(): JSX.Element {
             </picture>
           </div>
         </Link>
-        <form className="relative" onSubmit={(e) => searchHandle(e)}>
+        <form
+          className="relative"
+          onSubmit={(e: React.FormEvent) => searchHandle(e)}
+        >
           <input
             type="text"
             name="search"
@@ -38,32 +43,32 @@ export default function Header(): JSX.Element {
             <path
               fill="white"
               d="M20.576 14.848q0-3.296-2.336-5.632t-5.664-2.368-5.664 2.368-2.336 5.632 2.336 5.664 5.664 2.336 5.664-2.336 2.336-5.664zm9.152 14.88q0 .928-.704 1.6t-1.6.672q-.96 0-1.6-.672l-6.112-6.112q-3.2 2.208-7.136 2.208-2.56 0-4.896-.992t-4-2.688-2.688-4T0 14.848t.992-4.864T3.68 5.952t4-2.688 4.896-.992 4.896.992 4 2.688 2.688 4.032.992 4.864q0 3.936-2.208 7.136l6.112 6.112q.672.672.672 1.632z"
-            ></path>
+            />
           </svg>
         </form>
         <div className="flex gap-4">
           <Link
             className="py-3 px-5 rounded-xl hover:bg-white hover:text-black text-white font-bold"
-            href="/movies"
+            href="../browse/movies"
           >
             MOVIES
           </Link>
           <Link
             className="py-3 px-5 rounded-xl hover:bg-white hover:text-black text-white font-bold"
-            href="/tv"
+            href="../browse/tv-show"
           >
             TV SHOWS
           </Link>
 
           <Link
             className="py-3 px-5 rounded-xl hover:bg-white hover:text-black text-white font-bold"
-            href="../news"
+            href="../browse/news"
           >
             NEWS
           </Link>
           <Link
             className="py-3 px-5 rounded-xl hover:bg-white hover:text-black text-white font-bold"
-            href=""
+            href="../browse/show"
           >
             SHOWTIMES
           </Link>

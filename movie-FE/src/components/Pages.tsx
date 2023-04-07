@@ -1,9 +1,7 @@
-import axios from "axios";
-import Link from "next/link";
-import { useState } from "react";
-import Empty from "./sub/Empty";
-import { MovieType } from "@/util/MovieType";
 import Card from "./sub/Card";
+import axios from "axios";
+import { useState } from "react";
+import { MovieType } from "@/util/MovieType";
 
 export default function Movies(props: {
   getmovies: MovieType[];
@@ -87,6 +85,7 @@ export default function Movies(props: {
       <div>
         <div className="flex justify-between w-full flex-wrap  ">
           {movies?.map((movie: MovieType, index: number) => (
+            // eslint-disable-next-line react/jsx-key
             <Card movie={movie} index={index} />
           ))}
         </div>

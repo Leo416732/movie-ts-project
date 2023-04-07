@@ -1,6 +1,5 @@
 import { MovieType } from "@/util/MovieType";
 import Link from "next/link";
-
 export default function ScrollCard(prop: MovieType): JSX.Element {
   return (
     <Link
