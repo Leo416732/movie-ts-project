@@ -20,7 +20,7 @@ export default function Home(props: {
           <h1 className="border-l-4 text-2xl border-red-600">
             NEW & UPCOMING MOVIES
           </h1>
-          <Link href="/movies" className="text-blue-600">
+          <Link href="../browse/movies" className="text-blue-600">
             view all
           </Link>
         </div>
@@ -31,7 +31,7 @@ export default function Home(props: {
           <h1 className="border-l-4 text-2xl border-red-600">
             NEW & UPCOMING TV SHOWS
           </h1>
-          <Link href="/tv" className="text-blue-600">
+          <Link href="../browse/tv-show" className="text-blue-600">
             view all
           </Link>
         </div>
@@ -42,9 +42,9 @@ export default function Home(props: {
 }
 
 export async function getStaticProps() {
-  const res = await axios.get("http://localhost:5005/movies?limit=10");
+  const res = await axios.get("http://localhost:5005/movies?limit=15");
   const movies = res.data;
-  const resTv = await axios.get("http://localhost:5005/movies/tv?limit=10");
+  const resTv = await axios.get("http://localhost:5005/movies/tv?limit=15");
   const shows = resTv.data;
 
   return {
