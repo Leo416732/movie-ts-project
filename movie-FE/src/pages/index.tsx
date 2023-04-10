@@ -44,7 +44,7 @@ export default function Home(props: {
 export async function getStaticProps() {
   const res = await axios.get("http://localhost:5005/movies?limit=15");
   const movies = res.data;
-  const resTv = await axios.get("http://localhost:5005/movies/tv?limit=15");
+  const resTv = await axios.get("http://localhost:5005/tv-show?limit=15");
   const shows = resTv.data;
 
   return {
